@@ -6,7 +6,7 @@ server = function(input, output, session){
   
   #mylocation <- eventReactive()
   
-  mylocation <- eventReactive(input$go, {geocode(input$userlocation)})
+  #mylocation <- eventReactive(input$go, {geocode(input$userlocation)})
   
   #browser()
   output$mymap <- renderLeaflet({
@@ -14,10 +14,10 @@ server = function(input, output, session){
     addTiles() %>%
     addProviderTiles("OpenStreetMap.BlackAndWhite") %>%
     # coordenadas de um ponto em específico
-    #addMarkers(lat = -22.911872, lng = -43.230184,
-    #           popup = "Estádio do Maracanã! <br> Apenas um exemplo!") %>%
+    addMarkers(lat = -22.911872, lng = -43.230184,
+               popup = "Estádio do Maracanã! <br> Apenas um exemplo!") %>%
     
-    addMarkers(lat = mylocation()$lat, lng = mylocation()$lon) %>%
+   # addMarkers(lat = mylocation()$lat, lng = mylocation()$lon) %>%
       
       # adicionar marker inserido pelo usuario  
     #addMarkers(lat = mylocation[1, 2], lng = mylocation[1, 1]) %>%
@@ -51,10 +51,10 @@ server = function(input, output, session){
   #leafletProxy("mymap", session) %>% addMarkers(lng = v$lon,lat = v$lat)
  
   
-  # observeEvent(input$go, {
-  #   v <- geocode(input$userlocation)
-  #   leafletProxy('mymap', session) %>% addMarkers(lng = v$lon,lat = v$lat)
-  # })
+   observeEvent(input$go, {
+     v <- geocode(input$userlocation)
+     leafletProxy('mymap', session) %>% addMarkers(lng = v$lon,lat = v$lat)
+   })
   
   
 }

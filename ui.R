@@ -27,7 +27,7 @@ source("post4-prepararshiny.R")
                  h2("Buscador OLX"),
                  textInput(inputId = "userlocation",
                            label = "Digite um endereço\n com pelo menos rua, número, bairro e cidade",
-                           value = "20550018"),
+                           value = ""),
                  helpText("Exemplo: Rua Dias da Rocha, 85 - Copacabana, Rio de Janeiro - RJ"),
                  
                  sliderInput(inputId = "distancia", label = "Escolha a distância em km:",
